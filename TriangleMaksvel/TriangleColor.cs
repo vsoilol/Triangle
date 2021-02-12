@@ -13,25 +13,29 @@ namespace TriangleMaksvel
 
         private const double Rad60 = Math.PI / 3;
 
+        private static readonly double Tan60, Sin60;
+
         private static int Sqwidth;
+
+        static TriangleColor()
+        {
+            Tan60 = Math.Tan(Rad60);
+            Sin60 = Math.Sin(Rad60);
+        }
 
         public static void DrawColorTriangle(PictureBox pictureBox, bool bright)
         {
             Sqwidth = pictureBox.Width;//Размер треугольника
 
-            THeight = (Sqwidth / 2) * Math.Tan(Rad60);//Высота треугольника
-
-            //pictureBox.Height = (int)Math.Round(THeight);
+            THeight = (Sqwidth / 2) * Tan60;//Высота треугольника
 
             pictureBox.Height = (int)Math.Round(THeight);
-            //pictureBox.Width = Sqwidth;
 
             var TriangleImage = new Bitmap(pictureBox.Width, pictureBox.Height);
 
             VertexR = new PointF(Sqwidth / 2, 0);
             VertexG = new PointF(0, (float)THeight);
             VertexB = new PointF(Sqwidth, (float)THeight);
-
 
             GraphicsPath TrianglePath = new GraphicsPath();
 
@@ -55,10 +59,7 @@ namespace TriangleMaksvel
                             TriangleImage.SetPixel(x, y, GetBrightGradedColorAtPoint(TestPoint));
                         else
                             TriangleImage.SetPixel(x, y, GetGradedColorAtPoint(TestPoint));
-
-
                     }
-
                 }
             }
 
@@ -86,7 +87,7 @@ namespace TriangleMaksvel
         {
 
             double R = (THeight - point.Y) / THeight;
-            double B = (Math.Sin(Rad60) * (point.X - (R * THeight) / Math.Tan(Rad60))) / THeight;
+            double B = (Sin60 * (point.X - (R * THeight) / Tan60)) / THeight;
             double G = Math.Abs(1 - R - B);
 
             return Color.FromArgb((int)Math.Round(R * 255), (int)Math.Round(G * 255), (int)Math.Round(B * 255));
@@ -95,7 +96,7 @@ namespace TriangleMaksvel
         public static Color GetBrightGradedColorAtPoint(Point point)
         {
             double R = (THeight - point.Y) / THeight;
-            double B = (Math.Sin(Rad60) * (point.X - (R * THeight) / Math.Tan(Rad60))) / THeight;
+            double B = (Sin60 * (point.X - (R * THeight) / Tan60)) / THeight;
             double G = Math.Abs(1 - R - B);
 
             double maxRGB = 1 / Math.Max(Math.Max(R, B), G);

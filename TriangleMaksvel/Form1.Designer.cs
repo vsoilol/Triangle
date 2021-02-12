@@ -33,7 +33,9 @@ namespace TriangleMaksvel
             this.IncreaseButton = new System.Windows.Forms.Button();
             this.ReduceButton = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.valueNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.uxPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valueNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // uxPictureBox
@@ -44,6 +46,8 @@ namespace TriangleMaksvel
             this.uxPictureBox.Size = new System.Drawing.Size(200, 200);
             this.uxPictureBox.TabIndex = 0;
             this.uxPictureBox.TabStop = false;
+           this.uxPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.uxPictureBox_MouseDown);
+            this.uxPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.uxPictureBox_MouseMove);
             // 
             // IncreaseButton
             // 
@@ -75,17 +79,31 @@ namespace TriangleMaksvel
             this.listBox1.Items.AddRange(new object[] {
             "Яркий",
             "Нормальный"});
-            this.listBox1.Location = new System.Drawing.Point(842, 285);
+            this.listBox1.Location = new System.Drawing.Point(842, 257);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(128, 36);
             this.listBox1.TabIndex = 3;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // valueNumericUpDown
+            // 
+            this.valueNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.valueNumericUpDown.Location = new System.Drawing.Point(842, 299);
+            this.valueNumericUpDown.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.valueNumericUpDown.Name = "valueNumericUpDown";
+            this.valueNumericUpDown.Size = new System.Drawing.Size(128, 22);
+            this.valueNumericUpDown.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 453);
+            this.Controls.Add(this.valueNumericUpDown);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.ReduceButton);
             this.Controls.Add(this.IncreaseButton);
@@ -94,6 +112,7 @@ namespace TriangleMaksvel
             this.Text = "Form1";
             this.Resize += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.uxPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valueNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -104,6 +123,7 @@ namespace TriangleMaksvel
         private System.Windows.Forms.Button IncreaseButton;
         private System.Windows.Forms.Button ReduceButton;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.NumericUpDown valueNumericUpDown;
     }
 }
 
